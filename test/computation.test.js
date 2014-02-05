@@ -4,15 +4,18 @@ var Computation = require('../' + (process.env.COMPUTATION || 'computation'))
 
 
 // Some predefined computations.
-var fortyTwo = new Computation(function() { return 42; })
-  , pending  = new Computation(function() { return Computation.Pending; })
-  , failure  = new Computation(function() { throw new Error('fail'); });
-  ;
+var fortyTwo = Computation.pure(42)
+  , pending  = Computation.pending
+  , failure  = Computation.fail(new Error('fail'));
 
 
 // Transformation functions.
 function multiplyByTwo(x) {
     return x * 2;
+}
+
+function multipleByTwoC(x) {
+    return Computation.pure(x * 2);
 }
 
 
@@ -47,6 +50,18 @@ describe('Computation#fmap', function() {
     });
     it('should pass pending state through', function() {
         assert.equal(42, pending.fmap().get(42));
+    });
+});
+
+describe('Computation#bind', function() {
+    it('should propagate pending state of the continuation', function() {
+        assert.equal('pending', fortyTwo.bind(pending).get('pending'));
+    });
+    it('should propagate error of the continuation', function() {
+        assert.equal('pending', fortyTwo.bind(failure).get('pending'));
+    });
+    it('should apply the function to the value', function() {
+        assert.equal(84, fortyTwo.bind(multipleByTwoC).get('pending'));
     });
 });
 

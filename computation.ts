@@ -18,19 +18,14 @@ class Computation<T> {
     }
 
 
-    // Convenience function to construct a pending computation.
-    static pending<V>(): Computation<V> {
-        return new Computation(() => {
-            return <V> Computation.Pending;
-        });
-    }
 
-    // Convenience function to create an failed computation.
-    static fail<V>(e: Error): Computation<V> {
-        return new Computation((): V => {
-            throw e;
-        });
-    }
+    // Convenience functions to create pure and failing computations.
+    static pure<V>(value: V) { return new Computation(() => { return value; }); }
+    static fail<V>(e: Error) { return new Computation((): V => { throw e; }); }
+
+    // A predefined computation which is always pending. It is a property
+    // rather than a function because it doesn't have to be parametrized.
+    static pending = new Computation(() => { return <any> Computation.Pending; });
 
 
     // Like the ES6 Promise#then function.
@@ -60,6 +55,14 @@ class Computation<T> {
         });
     }
 
+    // Like fmap, but the function can return a computation which is then
+    // automatically executed.
+    bind<V>(f: (value: T) => Computation<V>): Computation<V> {
+        return this.fmap(v => {
+            return f(v).fn();
+        });
+    }
+
 
     // Pending computations and errors are passed through.
     static liftA2<A,B,C>(a: Computation<A>, b: Computation<B>, f: (a: A, b: B) => C): Computation<C> {
@@ -71,7 +74,7 @@ class Computation<T> {
                     return f(av, bv);
                 });
             } else {
-                return Computation.pending<C>();
+                return Computation.pending;
             }
         } catch (e) {
             return Computation.fail<C>(e);
