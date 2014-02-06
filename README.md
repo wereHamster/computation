@@ -27,6 +27,69 @@ which will be used if the result is not available yet (regardless of the
 reason).
 
 
+
+## API
+
+### new Computation(fn)
+
+Creates a new computation. The given function must return the value or the
+sentinel (`Computation.Pending`) if the result is not available yet.
+
+
+### then(resolve, reject)
+
+This function is analogous to Promise#then. The first callback is mandatory,
+and will be executed when the computation is either completed or pending. The
+second callback is optional and is called when the computation threw an error.
+Both callbacks are free to return a value, the pending sentinel or throw an
+error.
+
+Usually you won't need to use this function directly. There are higher-level
+combinators which are more convenient to use:`fmap` and `bind`.
+
+
+### get(fallback)
+
+Run the computation and get the result. If the computation is pending or
+throws an error at any point, then the fallback value is returned instead.
+
+
+### fmap(fn)
+
+If the computation yields a value (ie. is not pending and did not throw any
+error), map it to a new value. Use it if you can directly compute the new
+value from the input.
+
+
+### bind(fn)
+
+Similar to `fmap`, but the function can return a `Computation` instead of
+a value directly. The computation is automatically executed when needed. Use
+this to chain computations together.
+
+
+### liftA2(a, b, fn)
+
+If you have two computations `a` and `b`, you can apply the function `fn` once
+both results are available.
+
+
+### static pure(v)
+
+Convenience function to create a computation which returns the given value.
+
+
+### static fail(e)
+
+Convenience function to create a computation which throws the given error.
+
+
+### static pending
+
+Computation which is pending. This is a property, not a function!
+
+
+
 ### Examples
 
 The examples are written in TypeScript, same as the library. But you can also
