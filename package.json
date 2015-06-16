@@ -17,6 +17,12 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "chai": "*"
+    "chai": "*",
+    "typescript": "*",
+    "gulp": "*",
+    "gulp-tslint": "*",
+    "gulp-typescript": "*",
+    "gulp-mocha": "*",
+    "gulp-babel": "*"
   }
 }

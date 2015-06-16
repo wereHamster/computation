@@ -98,7 +98,4 @@ class Computation<T> {
 }
 
 
-declare var module: any;
-if (typeof module !== 'undefined') {
-    module.exports = Computation;
-}
+export default Computation;
