@@ -2,7 +2,7 @@
 // The value may not immediately be available (eg. if it's being asynchronously
 // fetched from a server).
 
-class Computation<T> {
+export default class Computation<T> {
 
     // Special value which can be used to denote that the computation is
     // pending and the result may become available at a later time.
@@ -96,6 +96,3 @@ class Computation<T> {
         }
     }
 }
-
-
-export default Computation;

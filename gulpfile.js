@@ -7,31 +7,33 @@ var gulp       = require('gulp')
 
 var project = ts.createProject({
     declarationFiles: false,
-    noExternalResolve: true,
+    //noExternalResolve: true,
     target: 'ES6',
     typescript: require('typescript')
 });
 
 
 gulp.task('lint', function() {
-    return gulp.src('computation.ts')
+    return gulp.src(['computation.ts', 'test.ts'])
         .pipe(tslint())
         .pipe(tslint.report('verbose'));
 });
 
-gulp.task('test', ['default'], function() {
-    return gulp.src('test/computation.test.js', { read: false })
-        .pipe(mocha());
+gulp.task('test', ['build'], function() {
+    return gulp.src('test.js', { read: false })
+        .pipe(mocha())
 });
 
-gulp.task('default', function() {
-    return gulp.src(['computation.ts'])
+gulp.task('build', ['lint'], function() {
+    return gulp.src(['computation.ts', 'test.ts'])
         .pipe(ts(project)).js
         .pipe(babel())
         .pipe(gulp.dest('.'));
 });
 
 
-gulp.task('watch', ['default'], function() {
-    gulp.watch('computation.ts', ['default', 'test']);
+gulp.task('watch', ['build'], function() {
+    gulp.watch(['computation.ts', 'test.ts'], ['build', 'test']);
 });
+
+gulp.task('default', ['build']);

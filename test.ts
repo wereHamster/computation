@@ -1,12 +1,14 @@
-var Computation = require('../' + (process.env.COMPUTATION || 'computation'))
-  , chai        = require('chai')
-  , assert      = chai.assert;
+/// <reference path="./ext/mocha.d.ts" />
+/// <reference path="./ext/chai.d.ts" />
+
+import Computation from "./computation";
+import { assert }  from "chai";
 
 
 // Some predefined computations.
 var fortyTwo = Computation.pure(42)
-  , pending  = Computation.pending
-  , failure  = Computation.fail(new Error('fail'));
+  , pending  = <any> Computation.pending
+  , failure  = <any> Computation.fail(new Error('fail'));
 
 
 // Transformation functions.
@@ -21,7 +23,7 @@ function multipleByTwoC(x) {
 
 describe('Computation#get', function() {
     it('should use the given computation function to compute the result', function() {
-        assert.equal(42, fortyTwo.get());
+        assert.equal(42, fortyTwo.get(undefined));
     });
     it('should use the fallback value if the computation is pending', function() {
         assert.equal('fallback', pending.get('fallback'));
@@ -33,23 +35,23 @@ describe('Computation#get', function() {
 
 describe('Computation#then', function() {
     it('should use the resolve function to map the value', function() {
-        assert.equal(84, fortyTwo.then(multiplyByTwo).get());
+        assert.equal(84, fortyTwo.then(multiplyByTwo).get(undefined));
     });
     it('should fail if the computation throws an exception', function() {
-        assert.equal(42, failure.then().get(42));
+        assert.equal(42, failure.then(undefined).get(42));
     });
     it('should should use the reject callback to transform exceptions', function() {
         function handleError(e) { return 'not ' + e.message; }
-        assert.equal('not fail', failure.then(null, handleError).get());
+        assert.equal('not fail', failure.then(null, handleError).get(undefined));
     });
 });
 
 describe('Computation#fmap', function() {
     it('should map the result to a new value', function() {
-        assert.equal(84, fortyTwo.fmap(multiplyByTwo).get());
+        assert.equal(84, fortyTwo.fmap(multiplyByTwo).get(undefined));
     });
     it('should pass pending state through', function() {
-        assert.equal(42, pending.fmap().get(42));
+        assert.equal(42, pending.fmap(undefined).get(42));
     });
 });
 
@@ -61,7 +63,7 @@ describe('Computation#bind', function() {
         assert.equal('pending', fortyTwo.bind(failure).get('pending'));
     });
     it('should apply the function to the value', function() {
-        assert.equal(84, fortyTwo.bind(multipleByTwoC).get('pending'));
+        assert.equal(84, fortyTwo.bind(multipleByTwoC).get(undefined));
     });
 });
 
@@ -69,16 +71,16 @@ describe('Computation#liftA2', function() {
     it('should pass input to the given function', function() {
         assert.equal(84, Computation.liftA2(fortyTwo, fortyTwo, function(a, b) {
             return a + b;
-        }).get());
+        }).get(undefined));
     });
     it('should propagate pending state', function() {
         assert.equal('pending', Computation.liftA2(pending, fortyTwo, function(a, b) {
-            return a + b;
+            return '' + a + b;
         }).get('pending'));
     });
     it('should propagate errors', function() {
         assert.equal('pending', Computation.liftA2(failure, fortyTwo, function(a, b) {
-            return a + b;
+            return '' + a + b;
         }).get('pending'));
     });
 });
