@@ -84,15 +84,20 @@ export default class Computation<T> {
     // Get the result of this computation. If the result is not available yet,
     // return the fallback value.
     get(fallback: T): T {
+        return this.getf(() => fallback);
+    }
+
+    // Like 'get' but the fallback value is created lazily.
+    getf(fallback: () => T): T {
         try {
             var result = this.fn();
             if (result === Computation.Pending) {
-                return fallback;
+                return fallback();
             } else {
                 return result;
             }
         } catch (e) {
-            return fallback;
+            return fallback();
         }
     }
 }
