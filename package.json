@@ -16,13 +16,13 @@
     "url": "https://github.com/wereHamster/computation/issues"
   },
   "devDependencies": {
-    "mocha": "*",
-    "chai": "*",
-    "typescript": "*",
-    "gulp": "*",
-    "gulp-tslint": "*",
-    "gulp-typescript": "*",
-    "gulp-mocha": "*",
+    "mocha": "^2.3.4",
+    "chai": "^3.4.1",
+    "typescript": "^1.6.2",
+    "gulp": "^3.9.0",
+    "gulp-tslint": "^3.6.0",
+    "gulp-typescript": "^2.9.2",
+    "gulp-mocha": "^2.2.0",
     "gulp-babel": "*"
   }
 }
