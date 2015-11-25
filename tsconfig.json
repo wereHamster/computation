@@ -1,0 +1,24 @@
+{
+    "version": "1.6.2",
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "declaration": true,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./computation.ts",
+        "./ext/chai.d.ts",
+        "./ext/mocha.d.ts",
+        "./test.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
+}
