@@ -1,22 +1,22 @@
 {
-    "version": "1.6.2",
+    "version": "1.7.3",
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
+        "module": "es6",
         "declaration": true,
         "noImplicitAny": false,
         "removeComments": true,
         "noLib": false
     },
     "filesGlob": [
-        "./**/*.ts",
-        "!./node_modules/**/*.ts"
+        "./computation.ts",
+        "./computation.test.ts",
+        "./typings/tsd.d.ts"
     ],
     "files": [
         "./computation.ts",
-        "./ext/chai.d.ts",
-        "./ext/mocha.d.ts",
-        "./test.ts"
+        "./computation.test.ts",
+        "./typings/tsd.d.ts"
     ],
     "atom": {
         "rewriteTsconfig": true

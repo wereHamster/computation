@@ -1,6 +1,5 @@
 /node_modules/
+/typings/
 
-/computation.js
-/test.js
-
-/coverage.html
+*.js
+*.d.ts

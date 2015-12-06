@@ -1,6 +1,3 @@
-/// <reference path="./ext/mocha.d.ts" />
-/// <reference path="./ext/chai.d.ts" />
-
 import Computation from "./computation";
 import { assert }  from "chai";
 
