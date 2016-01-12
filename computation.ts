@@ -20,27 +20,27 @@ export default class Computation<T> {
 
 
     // Convenience functions to create pure and failing computations.
-    static pure<V>(value: V) { return new Computation(() => { return value; }); }
+    static pure<V>(value: V) { return new Computation(() => value); }
     static fail<V>(e: Error) { return new Computation((): V => { throw e; }); }
 
     // A predefined computation which is always pending. It is a property
     // rather than a function because it doesn't have to be parametrized.
-    static pending = new Computation(() => { return <any> Computation.Pending; });
+    static pending = new Computation(() => <any> Computation.Pending);
 
 
     // Like the ES6 Promise#then function.
     then<V>(resolve: (value: T) => V, reject?: (err: Error) => V): Computation<V> {
-        return new Computation(() => {
-            try {
-                return resolve(this.fn());
-            } catch (e) {
-                if (reject) {
+        if (reject === undefined) {
+            return new Computation(() => resolve(this.fn()));
+        } else {
+            return new Computation(() => {
+                try {
+                    return resolve(this.fn());
+                } catch (e) {
                     return reject(e);
-                } else {
-                    throw e;
                 }
-            }
-        });
+            });
+        }
     }
 
     // Map over the result. Pending state and errors are passsed onto the next
@@ -58,27 +58,20 @@ export default class Computation<T> {
     // Like fmap, but the function can return a computation which is then
     // automatically executed.
     bind<V>(f: (value: T) => Computation<V>): Computation<V> {
-        return this.fmap(v => {
-            return f(v).fn();
-        });
+        return this.fmap(v => f(v).fn());
     }
 
 
     // Pending computations and errors are passed through.
     static liftA2<A,B,C>(a: Computation<A>, b: Computation<B>, f: (a: A, b: B) => C): Computation<C> {
-        try {
-            var av = a.fn(), bv = b.fn();
-
+        return new Computation(() => {
+            let av = a.fn(), bv = b.fn();
             if (av !== Computation.Pending && bv !== Computation.Pending) {
-                return new Computation(() => {
-                    return f(av, bv);
-                });
+                return f(av, bv);
             } else {
-                return Computation.pending;
+                return Computation.Pending;
             }
-        } catch (e) {
-            return Computation.fail<C>(e);
-        }
+        });
     }
 
     // Get the result of this computation. If the result is not available yet,
@@ -90,7 +83,7 @@ export default class Computation<T> {
     // Like 'get' but the fallback value is created lazily.
     getf(fallback: () => T): T {
         try {
-            var result = this.fn();
+            let result = this.fn();
             if (result === Computation.Pending) {
                 return fallback();
             } else {
