@@ -6,7 +6,12 @@ export default class Computation<T> {
 
     // Special value which can be used to denote that the computation is
     // pending and the result may become available at a later time.
-    static Pending : any = {};
+    //
+    // We use a runtime-wide Symbol. The 'Computation' library may be loaded
+    // by multiple node modules independently, but we need to ensure that the
+    // 'Pending' value can be compared for equality.
+
+    static Pending : any = Symbol.for('Computation.Pending');
 
 
     // The function which when called will produce the computation result.
