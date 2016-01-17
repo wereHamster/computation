@@ -1,6 +1,6 @@
 {
   "name": "computation",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "A small JavaScript library to express computations",
   "main": "computation.js",
   "typings": "computation.d.ts",
