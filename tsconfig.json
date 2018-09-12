@@ -5,7 +5,10 @@
     "declaration": true,
     "noImplicitAny": false,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "types": []
   },
-  "files": ["./computation.ts", "./computation.test.ts"]
+  "include": ["src/**/*.ts"]
 }
