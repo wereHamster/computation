@@ -79,7 +79,7 @@ export default class Computation<T> {
     f: (a: A, b: B) => C
   ): Computation<C> {
     return new Computation(() => {
-      let av = a.fn(),
+      const av = a.fn(),
         bv = b.fn();
       if (av !== Computation.Pending && bv !== Computation.Pending) {
         return f(av, bv);
@@ -98,7 +98,7 @@ export default class Computation<T> {
   // Like 'get' but the fallback value is created lazily.
   getf(fallback: () => T): T {
     try {
-      let result = this.fn();
+      const result = this.fn();
       if (result === Computation.Pending) {
         return fallback();
       } else {
