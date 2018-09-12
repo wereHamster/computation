@@ -4,7 +4,7 @@ import Computation from "./computation";
 import { assert } from "chai";
 
 // Some predefined computations.
-var fortyTwo = Computation.pure(42),
+const fortyTwo = Computation.pure(42),
   pending = <any>Computation.pending,
   failure = <any>Computation.fail(new Error("fail"));
 
