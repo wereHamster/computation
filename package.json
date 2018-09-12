@@ -23,7 +23,7 @@
     "gulp-babel": "*",
     "gulp-mocha": "^2.2.0",
     "gulp-tslint": "^4.1.1",
-    "gulp-typescript": "^2.9.2",
+    "gulp-typescript": "^4.0.2",
     "merge2": "^0.3.6",
     "mocha": "^2.3.4",
     "tsd": "^0.6.5",
