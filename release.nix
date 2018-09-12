@@ -27,4 +27,29 @@ in {
       rm $out/*.test.*
     '';
   };
+
+  head = pkgs.stdenv.mkDerivation {
+    name = "avers";
+    src = ./.;
+
+    buildInputs = [
+      pkgs.nodejs-10_x
+    ];
+
+    buildPhase = ''
+      HOME=$PWD npm install
+      ./node_modules/.bin/tsc
+      cp package.json dist/package.json
+    '';
+
+    checkPhase = ''
+      ./node_modules/.bin/tslint --project .
+      ./node_modules/.bin/mocha dist
+    '';
+
+    installPhase = ''
+      mv dist $out
+      rm $out/*.test.*
+    '';
+  };
 }
