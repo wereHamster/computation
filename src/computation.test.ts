@@ -19,7 +19,7 @@ function multipleByTwoC(x) {
 
 describe("Computation#get", function() {
   it("should use the given computation function to compute the result", function() {
-    assert.equal(42, fortyTwo.get(undefined));
+    assert.equal(42, fortyTwo.get(0));
   });
   it("should use the fallback value if the computation is pending", function() {
     assert.equal("fallback", pending.get("fallback"));
@@ -31,7 +31,7 @@ describe("Computation#get", function() {
 
 describe("Computation#then", function() {
   it("should use the resolve function to map the value", function() {
-    assert.equal(84, fortyTwo.then(multiplyByTwo).get(undefined));
+    assert.equal(84, fortyTwo.then(multiplyByTwo).get(0));
   });
   it("should fail if the computation throws an exception", function() {
     assert.equal(42, failure.then(undefined).get(42));
@@ -46,7 +46,7 @@ describe("Computation#then", function() {
 
 describe("Computation#fmap", function() {
   it("should map the result to a new value", function() {
-    assert.equal(84, fortyTwo.fmap(multiplyByTwo).get(undefined));
+    assert.equal(84, fortyTwo.fmap(multiplyByTwo).get(0));
   });
   it("should pass pending state through", function() {
     assert.equal(42, pending.fmap(undefined).get(42));
@@ -61,7 +61,7 @@ describe("Computation#bind", function() {
     assert.equal("pending", fortyTwo.bind(failure).get("pending"));
   });
   it("should apply the function to the value", function() {
-    assert.equal(84, fortyTwo.bind(multipleByTwoC).get(undefined));
+    assert.equal(84, fortyTwo.bind(multipleByTwoC).get(0));
   });
 });
 
@@ -71,7 +71,7 @@ describe("Computation#liftA2", function() {
       84,
       Computation.liftA2(fortyTwo, fortyTwo, function(a, b) {
         return a + b;
-      }).get(undefined)
+      }).get(0)
     );
   });
   it("should propagate pending state", function() {
