@@ -1,3 +1,5 @@
+import "mocha";
+
 import Computation from "./computation";
 import { assert } from "chai";
 

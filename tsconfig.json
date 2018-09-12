@@ -1,24 +1,11 @@
 {
-    "version": "1.7.3",
-    "compilerOptions": {
-        "target": "es6",
-        "module": "es6",
-        "declaration": true,
-        "noImplicitAny": false,
-        "removeComments": true,
-        "noLib": false
-    },
-    "filesGlob": [
-        "./computation.ts",
-        "./computation.test.ts",
-        "./typings/tsd.d.ts"
-    ],
-    "files": [
-        "./computation.ts",
-        "./computation.test.ts",
-        "./typings/tsd.d.ts"
-    ],
-    "atom": {
-        "rewriteTsconfig": true
-    }
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "declaration": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "files": ["./computation.ts", "./computation.test.ts"]
 }
