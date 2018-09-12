@@ -59,7 +59,7 @@ export default class Computation<T> {
   fmap<V>(f: (value: T) => V): Computation<V> {
     return this.then(v => {
       if (v === Computation.Pending) {
-        return <V>Computation.Pending;
+        return Computation.Pending;
       } else {
         return f(v);
       }
