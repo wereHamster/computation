@@ -35,12 +35,13 @@ in {
 
     buildInputs = [
       pkgs.nodejs-10_x
+      pkgs.jq
     ];
 
     buildPhase = ''
       HOME=$PWD npm ci
       ./node_modules/.bin/tsc
-      cp package.json dist/package.json
+      cat package.json | jq 'del(.devDependencies)' > dist/package.json
     '';
 
     checkPhase = ''
