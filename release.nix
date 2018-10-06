@@ -14,6 +14,7 @@ in {
     buildPhase = ''
       HOME=$PWD npm ci
       ./node_modules/.bin/tsc
+      npm --no-git-tag-version version patch
       cat package.json | jq 'del(.devDependencies) | .version = .version + "-alpha.${n}+${commit}"' > dist/package.json
     '';
 
