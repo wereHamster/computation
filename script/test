@@ -2,8 +2,6 @@
 set -e
 cd "$(dirname "$0")/.."
 
-npm install
-
 ./node_modules/.bin/tsc
 ./node_modules/.bin/tslint --project .
 ./node_modules/.bin/mocha dist
