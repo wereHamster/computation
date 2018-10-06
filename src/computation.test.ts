@@ -4,9 +4,9 @@ import Computation from "./computation";
 import { assert } from "chai";
 
 // Some predefined computations.
-const fortyTwo = Computation.pure(42),
-  pending = <any>Computation.pending,
-  failure = <any>Computation.fail(new Error("fail"));
+const fortyTwo = Computation.pure(42);
+const pending = Computation.pending;
+const failure = Computation.fail(new Error("fail"));
 
 // Transformation functions.
 function multiplyByTwo(x) {
@@ -34,13 +34,16 @@ describe("Computation#then", function() {
     assert.equal(84, fortyTwo.then(multiplyByTwo).get(0));
   });
   it("should fail if the computation throws an exception", function() {
-    assert.equal(42, failure.then(undefined).get(42));
+    assert.equal(42, failure.then(() => {}).get(42));
   });
   it("should should use the reject callback to transform exceptions", function() {
     function handleError(e) {
       return "not " + e.message;
     }
-    assert.equal("not fail", failure.then(null, handleError).get(undefined));
+    assert.equal(
+      "not fail",
+      failure.then(() => "", handleError).get(undefined)
+    );
   });
 });
 
@@ -49,16 +52,16 @@ describe("Computation#fmap", function() {
     assert.equal(84, fortyTwo.fmap(multiplyByTwo).get(0));
   });
   it("should pass pending state through", function() {
-    assert.equal(42, pending.fmap(undefined).get(42));
+    assert.equal(42, pending.fmap(() => {}).get(42));
   });
 });
 
 describe("Computation#bind", function() {
   it("should propagate pending state of the continuation", function() {
-    assert.equal("pending", fortyTwo.bind(pending).get("pending"));
+    assert.equal("pending", fortyTwo.bind(() => pending).get("pending"));
   });
   it("should propagate error of the continuation", function() {
-    assert.equal("pending", fortyTwo.bind(failure).get("pending"));
+    assert.equal("pending", fortyTwo.bind(() => failure).get("pending"));
   });
   it("should apply the function to the value", function() {
     assert.equal(84, fortyTwo.bind(multipleByTwoC).get(0));

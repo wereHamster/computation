@@ -24,17 +24,15 @@ export default class Computation<T> {
     return new Computation(() => value);
   }
 
-  static fail<V>(e: Error) {
-    return new Computation(
-      (): V => {
-        throw e;
-      }
-    );
+  static fail(e: Error) {
+    return new Computation(() => {
+      throw e;
+    });
   }
 
   // A predefined computation which is always pending. It is a property
   // rather than a function because it doesn't have to be parametrized.
-  static pending = new Computation(() => <any>Computation.Pending);
+  static pending = new Computation<never>((() => Computation.Pending) as any);
 
   // Like the ES6 Promise#then function.
   then<V>(
