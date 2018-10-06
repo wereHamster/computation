@@ -91,12 +91,12 @@ export default class Computation<T> {
 
   // Get the result of this computation. If the result is not available yet,
   // return the fallback value.
-  get(fallback: T): T {
-    return this.getf(() => fallback);
+  get<A>(fallback: A): T | A {
+    return this.getf<A>(() => fallback);
   }
 
   // Like 'get' but the fallback value is created lazily.
-  getf(fallback: () => T): T {
+  getf<A>(fallback: () => A): T | A {
     try {
       const result = this.fn();
       if (result === Computation.Pending) {
