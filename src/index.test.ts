@@ -1,6 +1,6 @@
 import "mocha";
 
-import Computation from "./computation";
+import Computation from "./index";
 import { assert } from "chai";
 
 // Some predefined computations.

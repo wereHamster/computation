@@ -14,6 +14,7 @@ in {
     buildPhase = ''
       HOME=$PWD npm ci
       ./node_modules/.bin/tsc
+      ./node_modules/.bin/rollup -c rollup.config.js
       npm --no-git-tag-version version patch
       cat package.json | jq 'del(.devDependencies) | .version = .version + "-alpha.${n}+${commit}"' > dist/package.json
     '';
@@ -41,6 +42,7 @@ in {
     buildPhase = ''
       HOME=$PWD npm ci
       ./node_modules/.bin/tsc
+      ./node_modules/.bin/rollup -c rollup.config.js
       cat package.json | jq 'del(.devDependencies)' > dist/package.json
     '';
 

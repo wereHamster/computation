@@ -2,8 +2,8 @@
   "name": "computation",
   "version": "2.0.1",
   "description": "A small JavaScript library to express computations",
-  "main": "computation.js",
-  "typings": "computation.d.ts",
+  "main": "index.node.js",
+  "module": "index.js",
   "scripts": {
     "test": "script/test"
   },
@@ -17,10 +17,14 @@
     "url": "https://github.com/wereHamster/computation/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.5",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
+    "rollup": "^1.1.2",
+    "rollup-plugin-babel": "^4.3.2",
     "tslint": "^5.11.0",
     "typescript": "^3.0.1"
   },
