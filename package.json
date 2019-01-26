@@ -1,6 +1,6 @@
 {
   "name": "computation",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A small JavaScript library to express computations",
   "main": "index.node.js",
   "module": "index.js",
