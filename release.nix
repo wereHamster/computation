@@ -3,7 +3,7 @@ let
 
 in {
   canary = { n, commit }: pkgs.stdenv.mkDerivation {
-    name = "avers";
+    name = "computation";
     src = ./.;
 
     buildInputs = [
@@ -31,7 +31,7 @@ in {
   };
 
   head = pkgs.stdenv.mkDerivation {
-    name = "avers";
+    name = "computation";
     src = ./.;
 
     buildInputs = [
