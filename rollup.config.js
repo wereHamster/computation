@@ -8,7 +8,5 @@ export default {
       format: "cjs"
     }
   ],
-  plugins: [
-    babel({ presets: [["@babel/preset-env", { targets: { node: "10" } }]] })
-  ]
+  plugins: [babel()]
 };

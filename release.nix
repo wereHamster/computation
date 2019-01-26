@@ -21,7 +21,7 @@ in {
 
     checkPhase = ''
       ./node_modules/.bin/tslint --project .
-      ./node_modules/.bin/mocha dist
+      ./node_modules/.bin/mocha --require @babel/register dist
     '';
 
     installPhase = ''
@@ -48,7 +48,7 @@ in {
 
     checkPhase = ''
       ./node_modules/.bin/tslint --project .
-      ./node_modules/.bin/mocha dist
+      ./node_modules/.bin/mocha --require @babel/register dist
     '';
 
     installPhase = ''
