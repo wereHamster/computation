@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eux
+
+nix build -f release.nix commit --argstr commit $GITHUB_SHA
+nix-shell -p rsync --run 'mkdir tmp; rsync result/* tmp/; rm result; mv tmp result'

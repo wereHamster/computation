@@ -1,7 +1,0 @@
-#!/bin/sh
-set -e
-cd "$(dirname "$0")/.."
-
-./node_modules/.bin/tsc
-./node_modules/.bin/tslint --project .
-./node_modules/.bin/mocha --require @babel/register dist
