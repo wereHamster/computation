@@ -7,7 +7,7 @@ in {
     src = ./.;
 
     buildInputs = [
-      pkgs.nodejs-10_x
+      pkgs.nodejs-12_x
       pkgs.jq
     ];
 
@@ -34,7 +34,7 @@ in {
     src = ./.;
 
     buildInputs = [
-      pkgs.nodejs-10_x
+      pkgs.nodejs-12_x
       pkgs.jq
     ];
 
@@ -62,7 +62,7 @@ in {
     src = ./.;
 
     buildInputs = [
-      pkgs.nodejs-10_x
+      pkgs.nodejs-12_x
       pkgs.jq
     ];
 
