@@ -12,6 +12,7 @@ jobs:
     - name: publish
       uses: actions/npm@master
       env:
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        NPM_REGISTRY_URL: npm.pkg.github.com
+        NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         args: publish --access public --tag commit result
