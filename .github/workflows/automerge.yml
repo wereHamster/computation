@@ -14,11 +14,17 @@ on:
     types:
       - submitted
   status: {}
+  check_suite:
+    types:
+      - completed
+  check_run:
+    types:
+      - completed
 jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - uses: "pascalgn/automerge-action@c164694009fe8770081d120f580a1eb4b5abca75"
+      - uses: "MerlinLabs/automerge-action@4c09c3fcc32d7c3a0b594e922108a36e01a2646c"
         continue-on-error: true
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
