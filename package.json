@@ -23,7 +23,7 @@
     "mocha": "^6.2.2",
     "rollup": "^1.26.3",
     "rollup-plugin-babel": "^4.3.2",
-    "tslint": "^5.20.0",
+    "tslint": "^5.20.1",
     "typescript": "^3.6.4"
   },
   "sideEffects": false
