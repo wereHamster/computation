@@ -21,7 +21,7 @@
     "@types/mocha": "^5.2.5",
     "chai": "^4.1.2",
     "mocha": "^6.2.2",
-    "rollup": "^1.26.3",
+    "rollup": "^1.26.5",
     "rollup-plugin-babel": "^4.3.2",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
