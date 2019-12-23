@@ -4,15 +4,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: build
-      uses: docker://nixos/nix
-      with:
-        entrypoint: ./script/build
-    - name: publish
-      uses: actions/npm@master
-      env:
-        NPM_REGISTRY_URL: npm.pkg.github.com
-        NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        args: publish --access public --tag commit result
+      - uses: actions/checkout@master
+      - name: build
+        uses: docker://nixos/nix
+        with:
+          entrypoint: ./script/build
+      - uses: actions/setup-node@v1
+        with:
+          registry-url: "https://npm.pkg.github.com"
+      - name: publish
+        run: npm publish --access public --tag commit result
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
