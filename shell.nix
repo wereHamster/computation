@@ -4,5 +4,6 @@ let
 in pkgs.mkShell {
   buildInputs = [
     pkgs.nodejs-13_x
+    pkgs.jq
   ];
 }

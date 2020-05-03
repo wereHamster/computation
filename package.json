@@ -1,9 +1,10 @@
 {
+  "type": "module",
   "name": "@werehamster/computation",
   "version": "2.0.2",
   "description": "A small JavaScript library to express computations",
-  "main": "index.node.js",
-  "module": "index.js",
+  "main": "./index.js",
+  "exports": "./index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/wereHamster/computation.git"
@@ -14,15 +15,10 @@
     "url": "https://github.com/wereHamster/computation/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/register": "^7.9.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
     "chai": "^4.1.2",
     "mocha": "^7.1.2",
-    "rollup": "^2.7.6",
-    "rollup-plugin-babel": "^4.4.0",
     "tslint": "^6.1.2",
     "typescript": "^3.8.3"
   },

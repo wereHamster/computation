@@ -1,7 +1,9 @@
 import "mocha";
 
-import Computation from "./index";
-import { assert } from "chai";
+import Computation from "./index.js";
+import chai from "chai";
+
+const { assert } = chai;
 
 // Some predefined computations.
 const fortyTwo = Computation.pure(42);
