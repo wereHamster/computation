@@ -20,7 +20,7 @@
     "chai": "^4.1.2",
     "mocha": "^7.1.2",
     "tslint": "^6.1.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.2"
   },
   "sideEffects": false
 }
