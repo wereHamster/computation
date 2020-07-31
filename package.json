@@ -18,7 +18,7 @@
     "@types/chai": "^4.2.12",
     "@types/mocha": "^8.0.0",
     "chai": "^4.1.2",
-    "mocha": "^8.0.1",
+    "mocha": "^8.1.0",
     "tslint": "^6.1.2",
     "typescript": "^3.9.7"
   },
