@@ -6,7 +6,6 @@
   "linter": {
     "rules": {
       "style": {
-        "useSingleVarDeclarator": "off",
         "useTemplate": "off",
         "noUselessElse": "off"
       },
