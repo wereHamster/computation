@@ -40,7 +40,7 @@ describe("Computation#then", () => {
   });
   it("should should use the reject callback to transform exceptions", () => {
     function handleError(e) {
-      return "not " + e.message;
+      return `not ${e.message}`;
     }
     assert.equal(
       "not fail",
@@ -80,7 +80,7 @@ describe("Computation#liftA2", () => {
   it("should propagate pending state", () => {
     assert.equal(
       "pending",
-      Computation.liftA2(pending, fortyTwo, (a, b) => "" + a + b).get(
+      Computation.liftA2(pending, fortyTwo, (a, b) => `${a}${b}`).get(
         "pending",
       ),
     );
@@ -88,7 +88,7 @@ describe("Computation#liftA2", () => {
   it("should propagate errors", () => {
     assert.equal(
       "pending",
-      Computation.liftA2(failure, fortyTwo, (a, b) => "" + a + b).get(
+      Computation.liftA2(failure, fortyTwo, (a, b) => `${a}${b}`).get(
         "pending",
       ),
     );
