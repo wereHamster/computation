@@ -5,24 +5,16 @@ on:
     types: [opened, synchronize, ready_for_review]
 
 jobs:
-  lint:
+  prv:
     if: github.event.pull_request.draft == false
-    name: Lint
+    name: Pull Request Verification
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: DeterminateSystems/nix-installer-action@v16
       - run: nix run github:nicknovitski/nix-develop .#workflow
+
       - run: biome lint ./src
-
-  check-types:
-    if: github.event.pull_request.draft == false
-    name: Check Types
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@v16
-      - run: nix run github:nicknovitski/nix-develop .#workflow
       - run: ./node_modules/.bin/tsc
