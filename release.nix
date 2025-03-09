@@ -7,8 +7,10 @@ in {
     src = ./.;
 
     buildInputs = [
-      pkgs.nodejs-14_x
+      pkgs.nodejs
+      pkgs.biome
       pkgs.jq
+      pkgs.cacert
     ];
 
     buildPhase = ''
@@ -18,8 +20,8 @@ in {
     '';
 
     checkPhase = ''
-      ./node_modules/.bin/tslint --project .
-      ./node_modules/.bin/mocha dist
+      biome lint ./src
+      node --test dist/index.test.js
     '';
 
     installPhase = ''
@@ -33,8 +35,10 @@ in {
     src = ./.;
 
     buildInputs = [
-      pkgs.nodejs-14_x
+      pkgs.nodejs
+      pkgs.biome
       pkgs.jq
+      pkgs.cacert
     ];
 
     buildPhase = ''
@@ -45,8 +49,8 @@ in {
     '';
 
     checkPhase = ''
-      ./node_modules/.bin/tslint --project .
-      ./node_modules/.bin/mocha dist
+      biome lint ./src
+      node --test dist/index.test.js
     '';
 
     installPhase = ''
@@ -60,8 +64,10 @@ in {
     src = ./.;
 
     buildInputs = [
-      pkgs.nodejs-14_x
+      pkgs.nodejs
+      pkgs.biome
       pkgs.jq
+      pkgs.cacert
     ];
 
     buildPhase = ''
@@ -71,8 +77,8 @@ in {
     '';
 
     checkPhase = ''
-      ./node_modules/.bin/tslint --project .
-      ./node_modules/.bin/mocha dist
+      biome lint ./src
+      node --test dist/index.test.js
     '';
 
     installPhase = ''
