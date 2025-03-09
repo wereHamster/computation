@@ -1,0 +1,18 @@
+{
+  "linter": {
+    "rules": {
+      "complexity": {
+        "useArrowFunction": "off"
+      },
+      "style": {
+        "useSingleVarDeclarator": "off",
+        "useTemplate": "off",
+        "noUselessElse": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noThenProperty": "off"
+      }
+    }
+  }
+}
