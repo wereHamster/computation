@@ -18,4 +18,4 @@ jobs:
 
       - run: biome lint ./src
       - run: ./node_modules/.bin/tsc
-      - run: ./node_modules/.bin/mocha dist
+      - run: node --test dist/index.test.js

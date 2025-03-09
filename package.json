@@ -15,10 +15,7 @@
     "url": "https://github.com/wereHamster/computation/issues"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.15",
-    "@types/mocha": "^8.0.3",
-    "chai": "^4.1.2",
-    "mocha": "^8.3.1",
+    "@types/node": "^22.13.10",
     "typescript": "^5.8.2"
   },
   "sideEffects": false
