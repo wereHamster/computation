@@ -16,6 +16,7 @@
           devShells.default = pkgs.mkShell {
             buildInputs = [
               pkgs.nodejs
+              pkgs.biome
               pkgs.jq
             ];
           };
