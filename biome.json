@@ -1,9 +1,6 @@
 {
   "linter": {
     "rules": {
-      "complexity": {
-        "useArrowFunction": "off"
-      },
       "style": {
         "useSingleVarDeclarator": "off",
         "useTemplate": "off",
