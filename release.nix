@@ -10,6 +10,7 @@ in {
       pkgs.nodejs
       pkgs.biome
       pkgs.jq
+      pkgs.cacert
     ];
 
     buildPhase = ''
@@ -37,6 +38,7 @@ in {
       pkgs.nodejs
       pkgs.biome
       pkgs.jq
+      pkgs.cacert
     ];
 
     buildPhase = ''
@@ -65,6 +67,7 @@ in {
       pkgs.nodejs
       pkgs.biome
       pkgs.jq
+      pkgs.cacert
     ];
 
     buildPhase = ''
