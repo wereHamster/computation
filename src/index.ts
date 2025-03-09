@@ -77,8 +77,8 @@ export default class Computation<T> {
     f: (a: A, b: B) => C,
   ): Computation<C> {
     return new Computation(() => {
-      const av = a.fn(),
-        bv = b.fn();
+      const av = a.fn();
+      const bv = b.fn();
       if (av !== Computation.Pending && bv !== Computation.Pending) {
         return f(av, bv);
       } else {
