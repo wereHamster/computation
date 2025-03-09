@@ -80,13 +80,17 @@ describe("Computation#liftA2", () => {
   it("should propagate pending state", () => {
     assert.equal(
       "pending",
-      Computation.liftA2(pending, fortyTwo, (a, b) => "" + a + b).get("pending"),
+      Computation.liftA2(pending, fortyTwo, (a, b) => "" + a + b).get(
+        "pending",
+      ),
     );
   });
   it("should propagate errors", () => {
     assert.equal(
       "pending",
-      Computation.liftA2(failure, fortyTwo, (a, b) => "" + a + b).get("pending"),
+      Computation.liftA2(failure, fortyTwo, (a, b) => "" + a + b).get(
+        "pending",
+      ),
     );
   });
 });
