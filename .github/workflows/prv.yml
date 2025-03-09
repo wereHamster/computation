@@ -1,0 +1,20 @@
+name: Pull Request Verification
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+
+jobs:
+  prv:
+    if: github.event.pull_request.draft == false
+    name: Pull Request Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@v16
+      - run: nix run github:nicknovitski/nix-develop .#workflow
+
+      - run: biome lint ./src
+      - run: ./node_modules/.bin/tsc

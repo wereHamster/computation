@@ -20,6 +20,17 @@
               pkgs.jq
             ];
           };
+
+          devShells.workflow = pkgs.mkShell {
+            buildInputs = [
+              pkgs.nodejs
+              pkgs.biome
+            ];
+
+            shellHook = ''
+              npm install >/dev/null 2>&1
+            '';
+          };
         }
       );
 }
