@@ -3,7 +3,6 @@
   "name": "computation",
   "version": "2.0.2",
   "description": "A small JavaScript library to express computations",
-  "main": "./index.js",
   "exports": "./index.js",
   "repository": {
     "type": "git",
