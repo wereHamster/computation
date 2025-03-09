@@ -45,7 +45,7 @@ export default class Computation<T> {
       return new Computation(() => {
         try {
           return resolve(this.fn());
-        } catch (e) {
+        } catch (e: any) {
           return reject(e);
         }
       });
