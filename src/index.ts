@@ -76,13 +76,7 @@ export default class Computation<T> {
   // Map over the result. Pending state and errors are passsed onto the next
   // computation untounched.
   fmap<V>(f: (value: T) => V): Computation<V> {
-    return this.then((v) => {
-      if (v === Computation.Pending) {
-        return Computation.Pending;
-      } else {
-        return f(v);
-      }
-    });
+    return this.then(f);
   }
 
   // Like fmap, but the function can return a computation which is then
