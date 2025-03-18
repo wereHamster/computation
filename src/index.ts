@@ -2,6 +2,15 @@
 // The value may not immediately be available (eg. if it's being asynchronously
 // fetched from a server).
 
+const Pending = Symbol.for("Computation.Pending");
+type Pending = typeof Pending;
+
+/**
+ * The value that the computation function can return.
+ * Either a {@link Pending} sentinel or a value of its chosing.
+ */
+type Return<T> = Pending | T;
+
 export default class Computation<T> {
   // Special value which can be used to denote that the computation is
   // pending and the result may become available at a later time.
@@ -10,12 +19,12 @@ export default class Computation<T> {
   // by multiple node modules independently, but we need to ensure that the
   // 'Pending' value can be compared for equality.
 
-  static Pending: any = Symbol.for("Computation.Pending");
+  static readonly Pending: Pending = Pending;
 
   // The function which when called will produce the computation result.
-  private fn: () => T;
+  private fn: () => Return<T>;
 
-  constructor(fn: () => T) {
+  constructor(fn: () => Return<T>) {
     this.fn = fn;
   }
 
@@ -32,19 +41,31 @@ export default class Computation<T> {
 
   // A predefined computation which is always pending. It is a property
   // rather than a function because it doesn't have to be parametrized.
-  static pending = new Computation<never>((() => Computation.Pending) as any);
+  static pending = new Computation<never>(() => Computation.Pending);
 
   // Like the ES6 Promise#then function.
   then<V>(
-    resolve: (value: T) => V,
+    resolve: (value: T) => Return<V>,
     reject?: (err: Error) => V,
   ): Computation<V> {
     if (reject === undefined) {
-      return new Computation(() => resolve(this.fn()));
+      return new Computation(() => {
+        const value = this.fn();
+        if (value === Computation.Pending) {
+          return Computation.Pending;
+        } else {
+          return resolve(value);
+        }
+      });
     } else {
       return new Computation(() => {
         try {
-          return resolve(this.fn());
+          const value = this.fn();
+          if (value === Computation.Pending) {
+            return Computation.Pending;
+          } else {
+            return resolve(value);
+          }
         } catch (e: any) {
           return reject(e);
         }
@@ -67,7 +88,7 @@ export default class Computation<T> {
   // Like fmap, but the function can return a computation which is then
   // automatically executed.
   bind<V>(f: (value: T) => Computation<V>): Computation<V> {
-    return this.fmap((v) => f(v).fn());
+    return this.then((v) => f(v).fn());
   }
 
   // Pending computations and errors are passed through.
