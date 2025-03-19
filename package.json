@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "computation",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A small JavaScript library to express computations",
   "exports": "./index.js",
   "repository": {
