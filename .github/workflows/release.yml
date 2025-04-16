@@ -18,11 +18,11 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
-      - uses: DeterminateSystems/nix-installer-action@v16
+      - uses: DeterminateSystems/nix-installer-action@e50d5f73bfe71c2dd0aa4218de8f4afa59f8f81d # v16
       - run: nix run github:nicknovitski/nix-develop .#workflow
 
-      - uses: changesets/action@v1
+      - uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc # v1.4.10
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
