@@ -21,8 +21,7 @@ jobs:
       - run: nix run github:nicknovitski/nix-develop .#workflow
 
       - run: ./node_modules/.bin/tsc
-      - run: npm --no-git-tag-version version from-git
-      - run: cat package.json | jq 'del(.devDependencies)' > dist/package.json
+      - run: cat package.json | jq --arg VERSION "${{ github.event.release.tag_name }}" 'del(.devDependencies) | .version = $VERSION' > dist/package.json
       - run: rm dist/*.test.*
 
       - run: npm publish --provenance --access public dist/
