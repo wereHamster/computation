@@ -22,7 +22,7 @@ jobs:
 
       - run: ./node_modules/.bin/tsc
       - run: npm --no-git-tag-version version from-git
-      - run: cat package.json | jq 'del(.devDependencies) > dist/package.json
+      - run: cat package.json | jq 'del(.devDependencies)' > dist/package.json
       - run: rm dist/*.test.*
 
       - run: npm publish --provenance --access public dist/
