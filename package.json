@@ -2,21 +2,19 @@
   "type": "module",
   "name": "computation",
   "version": "2.1.1",
-  "description": "A small JavaScript library to express computations",
-  "exports": "./index.js",
+  "license": "MIT",
+  "author": "Tomas Carnecky <tomc@caurea.org>",
+  "sideEffects": false,
+  "exports": {
+    ".": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/wereHamster/computation.git"
-  },
-  "author": "Tomas Carnecky <tomc@caurea.org>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/wereHamster/computation/issues"
   },
   "devDependencies": {
     "@changesets/cli": "^2.28.1",
     "@types/node": "^22.13.10",
     "typescript": "^5.8.2"
-  },
-  "sideEffects": false
+  }
 }
