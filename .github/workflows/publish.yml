@@ -1,0 +1,30 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - uses: DeterminateSystems/nix-installer-action@e50d5f73bfe71c2dd0aa4218de8f4afa59f8f81d # v16
+      - run: nix run github:nicknovitski/nix-develop .#workflow
+
+      - run: ./node_modules/.bin/tsc
+      - run: npm --no-git-tag-version version from-git
+      - run: cat package.json | jq 'del(.devDependencies) > dist/package.json
+      - run: rm dist/*.test.*
+
+      - run: npm publish --provenance --access public dist/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

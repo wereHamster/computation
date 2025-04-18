@@ -25,6 +25,7 @@
             buildInputs = [
               pkgs.nodejs
               pkgs.biome
+              pkgs.jq
             ];
 
             shellHook = ''
