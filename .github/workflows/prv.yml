@@ -19,6 +19,6 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@e50d5f73bfe71c2dd0aa4218de8f4afa59f8f81d # v16
       - run: nix run github:nicknovitski/nix-develop .#workflow
 
-      - run: biome lint ./src
+      - run: biome lint .
       - run: ./node_modules/.bin/tsc
       - run: node --test dist/index.test.js

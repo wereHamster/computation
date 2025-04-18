@@ -1,4 +1,8 @@
 {
+  "files": {
+    "ignore": [".direnv", "dist", "node_modules"]
+  },
+
   "formatter": {
     "indentStyle": "space"
   },
