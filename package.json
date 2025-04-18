@@ -8,7 +8,7 @@
     "type": "git",
     "url": "git://github.com/wereHamster/computation.git"
   },
-  "author": "Tomas Carnecky <tomas.carnecky@gmail.com>",
+  "author": "Tomas Carnecky <tomc@caurea.org>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wereHamster/computation/issues"
