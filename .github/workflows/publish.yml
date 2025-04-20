@@ -25,7 +25,11 @@ jobs:
       - run: npm ci
 
       - run: ./node_modules/.bin/tsc
-      - run: cat package.json | jq --arg VERSION "${{ github.event.release.tag_name }}" 'del(.devDependencies) | .version = $VERSION' > dist/package.json
+
+      - run: cat package.json | jq --arg VERSION "${TAG#v}" 'del(.devDependencies) | .version = $VERSION' > dist/package.json
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+
       - run: rm dist/*.test.*
 
       - run: npm publish --provenance --access public dist/
