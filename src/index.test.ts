@@ -32,8 +32,13 @@ describe("Computation#get", () => {
 });
 
 describe("Computation#then", () => {
+  it("should pass Pending through", () => {
+    assert.equal("fallback", pending.then(multiplyByTwo).get("fallback"));
+    assert.equal("fallback", pending.then(multiplyByTwo, () => 1).get("fallback"));
+  });
   it("should use the resolve function to map the value", () => {
     assert.equal(84, fortyTwo.then(multiplyByTwo).get(0));
+    assert.equal(84, fortyTwo.then(multiplyByTwo, () => 1).get(0));
   });
   it("should fail if the computation throws an exception", () => {
     assert.equal(42, failure.then(() => {}).get(42));
