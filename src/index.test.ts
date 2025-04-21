@@ -1,7 +1,8 @@
 /// <reference types="node" />
 
-import { describe, it } from "node:test";
+import { test, describe, it } from "node:test";
 import assert from "node:assert";
+import * as fc from "fast-check";
 
 import Computation from "./index.js";
 
@@ -98,4 +99,22 @@ describe("Computation#liftA2", () => {
       ),
     );
   });
+});
+
+test("forall x,f. pure(x).fmap(f).get() === f(x)", () => {
+  const f = fc.constant((x: unknown) => {
+    if (typeof x === "number") {
+      return x * 2;
+    } else if (Array.isArray(x)) {
+      return [...x, 42];
+    }
+
+    return x;
+  });
+
+  fc.assert(
+    fc.property(fc.anything(), f, (x, f) => {
+      assert.deepEqual(Computation.pure(x).fmap(f).get(undefined), f(x));
+    })
+  );
 });
