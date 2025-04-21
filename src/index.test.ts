@@ -103,13 +103,29 @@ describe("Computation#liftA2", () => {
 
 test("forall x,f. pure(x).fmap(f).get() === f(x)", () => {
   const f = fc.constant((x: unknown) => {
-    if (typeof x === "number") {
+    if (x === undefined) {
+      return "UNDEFINED";
+    } else if (x === null) {
+      return "NULL";
+    } else if (typeof x === "symbol") {
+      return x.toString();
+    } else if (typeof x === "number") {
       return x * 2;
+    } else if (typeof x === "bigint") {
+      return x * 2n;
+    } else if (typeof x === "string") {
+      return x.toUpperCase();
+    } else if (typeof x === "boolean") {
+      return !x;
     } else if (Array.isArray(x)) {
       return [...x, 42];
+    } else if (typeof x === "object") {
+      return { ...x, id: 42 };
+    } else if (typeof x === "function") {
+      return x();
     }
 
-    return x;
+    throw new Error("Unexpected type");
   });
 
   fc.assert(
