@@ -1,7 +1,8 @@
 /// <reference types="node" />
 
-import { describe, it } from "node:test";
+import { test, describe, it } from "node:test";
 import assert from "node:assert";
+import * as fc from "fast-check";
 
 import Computation from "./index.js";
 
@@ -98,4 +99,38 @@ describe("Computation#liftA2", () => {
       ),
     );
   });
+});
+
+test("forall x,f. pure(x).fmap(f).get() === f(x)", () => {
+  const mapper = fc.constant((x: unknown) => {
+    if (x === undefined) {
+      return "UNDEFINED";
+    } else if (x === null) {
+      return "NULL";
+    } else if (typeof x === "symbol") {
+      return x.toString();
+    } else if (typeof x === "number") {
+      return x * 2;
+    } else if (typeof x === "bigint") {
+      return x * 2n;
+    } else if (typeof x === "string") {
+      return x.toUpperCase();
+    } else if (typeof x === "boolean") {
+      return !x;
+    } else if (Array.isArray(x)) {
+      return [...x, 42];
+    } else if (typeof x === "object") {
+      return { ...x, id: 42 };
+    } else if (typeof x === "function") {
+      return x();
+    }
+
+    throw new Error("Unexpected Value");
+  });
+
+  fc.assert(
+    fc.property(fc.anything(), fc.oneof(mapper, fc.func(fc.anything())), (x, f) => {
+      assert.deepEqual(Computation.pure(x).fmap(f).get(undefined), f(x));
+    })
+  );
 });
