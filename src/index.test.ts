@@ -11,11 +11,11 @@ const pending = Computation.pending;
 const failure = Computation.fail(new Error("fail"));
 
 // Transformation functions.
-function multiplyByTwo(x) {
+function multiplyByTwo(x: number) {
   return x * 2;
 }
 
-function multipleByTwoC(x) {
+function multipleByTwoC(x: number) {
   return Computation.pure(x * 2);
 }
 
@@ -38,8 +38,8 @@ describe("Computation#then", () => {
   it("should fail if the computation throws an exception", () => {
     assert.equal(42, failure.then(() => {}).get(42));
   });
-  it("should should use the reject callback to transform exceptions", () => {
-    function handleError(e) {
+  it("should use the reject callback to transform exceptions", () => {
+    function handleError(e: Error) {
       return `not ${e.message}`;
     }
     assert.equal(
