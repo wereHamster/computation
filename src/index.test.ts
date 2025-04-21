@@ -102,7 +102,7 @@ describe("Computation#liftA2", () => {
 });
 
 test("forall x,f. pure(x).fmap(f).get() === f(x)", () => {
-  const f = fc.constant((x: unknown) => {
+  const mapper = fc.constant((x: unknown) => {
     if (x === undefined) {
       return "UNDEFINED";
     } else if (x === null) {
@@ -129,7 +129,7 @@ test("forall x,f. pure(x).fmap(f).get() === f(x)", () => {
   });
 
   fc.assert(
-    fc.property(fc.anything(), f, (x, f) => {
+    fc.property(fc.anything(), fc.oneof(mapper, fc.func(fc.anything())), (x, f) => {
       assert.deepEqual(Computation.pure(x).fmap(f).get(undefined), f(x));
     })
   );
