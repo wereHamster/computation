@@ -125,7 +125,7 @@ test("forall x,f. pure(x).fmap(f).get() === f(x)", () => {
       return x();
     }
 
-    throw new Error("Unexpected type");
+    throw new Error("Unexpected Value");
   });
 
   fc.assert(
