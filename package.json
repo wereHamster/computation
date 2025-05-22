@@ -13,7 +13,7 @@
     "url": "git://github.com/wereHamster/computation.git"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.3",
+    "@changesets/cli": "^2.29.4",
     "@types/node": "^22.15.3",
     "fast-check": "^4.1.1",
     "typescript": "^5.8.2"
