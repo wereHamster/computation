@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.6",
-    "@types/node": "^24.0.13",
+    "@types/node": "^24.7.0",
     "fast-check": "^4.3.0",
     "typescript": "^5.9.2"
   }
