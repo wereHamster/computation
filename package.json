@@ -16,6 +16,6 @@
     "@changesets/cli": "^2.29.7",
     "@types/node": "^24.0.13",
     "fast-check": "^4.3.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   }
 }
