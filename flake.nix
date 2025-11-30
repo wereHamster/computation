@@ -16,6 +16,7 @@
           devShells.default = pkgs.mkShell {
             buildInputs = [
               pkgs.nodejs
+              pkgs.pnpm
               pkgs.biome
               pkgs.jq
             ];
@@ -24,12 +25,13 @@
           devShells.workflow = pkgs.mkShell {
             buildInputs = [
               pkgs.nodejs
+              pkgs.pnpm
               pkgs.biome
               pkgs.jq
             ];
 
             shellHook = ''
-              npm install >/dev/null 2>&1
+              pnpm install --frozen-lockfile >/dev/null 2>&1
             '';
           };
         }
