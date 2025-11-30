@@ -1,6 +1,6 @@
 {
   "files": {
-    "ignore": [".direnv", "dist", "node_modules"]
+    "includes": ["**", "!**/.direnv", "!**/dist", "!**/node_modules"]
   },
 
   "formatter": {

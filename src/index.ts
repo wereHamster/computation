@@ -117,7 +117,7 @@ export default class Computation<T> {
       } else {
         return result;
       }
-    } catch (e) {
+    } catch (_e) {
       return fallback();
     }
   }
