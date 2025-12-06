@@ -45,5 +45,5 @@ jobs:
       # ---------------------------------------------------------------------
       # Publish
 
-      - run: npm publish --access public
+      - run: npm publish --access public --provenance
         working-directory: dist/
