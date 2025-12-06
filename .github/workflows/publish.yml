@@ -17,7 +17,10 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
 
-      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v4
+      # ---------------------------------------------------------------------
+      # Setup
+
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
           node-version: "22.21.1"
           registry-url: "https://registry.npmjs.org"
@@ -28,6 +31,9 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # ---------------------------------------------------------------------
+      # Build
+
       - run: ./node_modules/.bin/tsc
 
       - run: cat package.json | jq --arg VERSION "${TAG#v}" 'del(.devDependencies) | .version = $VERSION' > dist/package.json
@@ -36,6 +42,8 @@ jobs:
 
       - run: rm dist/*.test.*
 
-      - run: npm publish --provenance --access public dist/
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # ---------------------------------------------------------------------
+      # Publish
+
+      - run: npm publish --access public
+        working-directory: dist/
