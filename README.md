@@ -1,5 +1,6 @@
-Computation
-===========
+# computation
+
+[![npm version][npm-version-src]][npm-version-href]
 
 A small JavaScript library to express computations which always produce
 a meaningful value, even if the computation can't be completed yet.
@@ -156,3 +157,8 @@ setInterval(function() {
 
 
 [react]: http://facebook.github.io/react/
+
+<!-- Badges -->
+
+[npm-version-src]: https://img.shields.io/npm/v/computation?style=for-the-badge&colorA=131511&colorB=3673b1
+[npm-version-href]: https://npmjs.com/package/computation
