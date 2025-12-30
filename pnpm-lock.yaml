@@ -16,7 +16,7 @@ importers:
         version: 24.10.2
       fast-check:
         specifier: ^4.3.0
-        version: 4.4.0
+        version: 4.5.2
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -172,8 +172,8 @@ packages:
   extendable-error@0.1.7:
     resolution: {integrity: sha512-UOiS2in6/Q0FK0R0q6UY9vYpQ21mr/Qn1KOnte7vsACuNJf514WvCCUHSRCPcgjPT2bAhNIJdlE6bVap1GKmeg==}
 
-  fast-check@4.4.0:
-    resolution: {integrity: sha512-s87BFAp8YaWYOBXjbTxeotaOhmA4hPYAyk9gBTFxdab25P6eAlqrryUvVMA2qd9bT/0Xq+YNJGtoVhJd/BxI4g==}
+  fast-check@4.5.2:
+    resolution: {integrity: sha512-tOzL01LMrDIWPLfvMiGUMH0AjqnOelHQPmgvYkW/aRO4Yaw+pBQqWmyebNzAEbKOigoCN8HkRWUZXFkjmiaXMQ==}
     engines: {node: '>=12.17.0'}
 
   fast-glob@3.3.3:
@@ -650,7 +650,7 @@ snapshots:
 
   extendable-error@0.1.7: {}
 
-  fast-check@4.4.0:
+  fast-check@4.5.2:
     dependencies:
       pure-rand: 7.0.1
 
