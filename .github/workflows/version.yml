@@ -24,6 +24,6 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@c5a866b6ab867e88becbed4467b93592bce69f8a # v21
       - run: nix run github:nicknovitski/nix-develop .#workflow
 
-      - uses: changesets/action@c48e67d110a68bc90ccf1098e9646092baacaa87 # v1.6.0
+      - uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # v1.7.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
