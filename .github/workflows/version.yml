@@ -25,5 +25,3 @@ jobs:
       - run: nix run github:nicknovitski/nix-develop .#workflow
 
       - uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # v1.7.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
