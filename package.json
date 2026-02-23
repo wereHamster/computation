@@ -6,7 +6,10 @@
   "author": "Tomas Carnecky <tomc@caurea.org>",
   "sideEffects": false,
   "exports": {
-    ".": "./index.js"
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    }
   },
   "repository": {
     "type": "git",
