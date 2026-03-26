@@ -3,5 +3,5 @@
   "extends": ["config:recommended"],
   "postUpdateOptions": ["pnpmDedupe"],
   "dependencyDashboardApproval": true,
-  "minimumReleaseAge": "9 days"
+  "minimumReleaseAge": "15 days"
 }
