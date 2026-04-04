@@ -15,7 +15,7 @@ importers:
         specifier: ^24.10.1
         version: 24.10.4
       fast-check:
-        specifier: ^4.3.0
+        specifier: ^4.6.0
         version: 4.6.0
       typescript:
         specifier: ^5.9.3
