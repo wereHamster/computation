@@ -1,5 +1,13 @@
 # computation
 
+## 2.1.2
+
+### Patch Changes
+
+- 4fcc4d7: Add explicit types and import conditions to exports
+
+  This improves TypeScript IntelliSense and module resolution for modern build tools.
+
 ## 2.1.0
 
 ### Minor Changes
