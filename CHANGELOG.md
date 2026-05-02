@@ -1,5 +1,11 @@
 # computation
 
+## 2.1.2
+
+### Patch Changes
+
+- **Add explicit types and import conditions to exports** ([#495](https://github.com/wereHamster/computation/pull/495)) - This improves TypeScript IntelliSense and module resolution for modern build tools.
+
 ## 2.1.0
 
 ### Minor Changes
