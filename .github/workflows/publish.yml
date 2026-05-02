@@ -20,15 +20,8 @@ jobs:
       # ---------------------------------------------------------------------
       # Setup
 
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
-        with:
-          node-version: "24.13.1"
-          registry-url: "https://registry.npmjs.org"
-
-      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
-        with:
-          version: "10.23.0"
-
+      - uses: DeterminateSystems/nix-installer-action@ef8a148080ab6020fd15196c2084a2eea5ff2d25 # v22
+      - run: nix run .#nix-develop .#workflow
       - run: pnpm install
 
       # ---------------------------------------------------------------------
@@ -36,14 +29,12 @@ jobs:
 
       - run: ./node_modules/.bin/tsc
 
-      - run: cat package.json | jq --arg VERSION "${TAG#v}" 'del(.devDependencies) | .version = $VERSION' > dist/package.json
-        env:
-          TAG: ${{ github.event.release.tag_name }}
+      - run: cat package.json | jq 'del(.devDependencies)' > dist/package.json
 
       - run: rm dist/*.test.*
 
       # ---------------------------------------------------------------------
       # Publish
 
-      - run: npm publish --access public
+      - run: pnpm publish --registry https://registry.npmjs.org --access public --no-git-checks
         working-directory: dist/
