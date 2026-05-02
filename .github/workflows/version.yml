@@ -25,4 +25,13 @@ jobs:
       - run: nix run .#nix-develop .#workflow
       - run: pnpm install
 
+      - run: |
+          if ./node_modules/.bin/changeset status --output=release.json 2>/dev/null; then
+            echo "VERSION=$(jq -r '.releases[0].newVersion' release.json)" >> "$GITHUB_ENV"
+            rm release.json
+          fi
+
       - uses: changesets/action@6a0a831ff30acef54f2c6aa1cbbc1096b066edaf # v1.7.0
+        with:
+          title: "Release ${{ env.VERSION }}"
+          commit: "Release ${{ env.VERSION }}"
