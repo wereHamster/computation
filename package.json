@@ -16,7 +16,7 @@
     "url": "git://github.com/wereHamster/computation.git"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.30.0",
+    "@changesets/cli": "^2.31.0",
     "@changesets/get-github-info": "^0.8.0",
     "@types/node": "^24.12.2",
     "fast-check": "^4.7.0",
