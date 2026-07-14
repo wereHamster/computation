@@ -17,10 +17,11 @@
     let
       forAllSystems =
         function: nixpkgs.lib.genAttrs (import systems) (system: function nixpkgs.legacyPackages.${system});
+
     in
     {
       packages = forAllSystems (pkgs: {
-        nix-develop = nix-develop.packages.${pkgs.system}.default;
+        nix-develop = nix-develop.packages.${pkgs.stdenv.hostPlatform.system}.default;
       });
 
       devShells = forAllSystems (pkgs: {
