@@ -20,6 +20,6 @@
     "@changesets/get-github-info": "^0.8.0",
     "@types/node": "^24.13.3",
     "fast-check": "^4.8.0",
-    "typescript": "^6.0.3"
+    "typescript": "^7.0.2"
   }
 }
