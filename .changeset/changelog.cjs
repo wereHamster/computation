@@ -14,12 +14,15 @@ module.exports = {
       .filter(Boolean);
 
     const { pull, commit } = await (async () => {
-      const { links } = await getCommitInfo({
+      const info = await getCommitInfo({
         repo: REPO,
         commit: changeset.commit,
       });
 
-      return links;
+      return {
+        pull: info?.pull?.markdownLink,
+        commit: info?.commit?.markdownLink,
+      };
     })();
 
     const pr = pull || commit ? ` (${pull ?? commit})` : "";
