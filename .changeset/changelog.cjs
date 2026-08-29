@@ -1,4 +1,4 @@
-const { getInfo } = require("@changesets/get-github-info");
+const { getCommitInfo } = require("@changesets/get-github-info");
 
 const REPO = "wereHamster/computation";
 
@@ -14,12 +14,15 @@ module.exports = {
       .filter(Boolean);
 
     const { pull, commit } = await (async () => {
-      const { links } = await getInfo({
+      const info = await getCommitInfo({
         repo: REPO,
         commit: changeset.commit,
       });
 
-      return links;
+      return {
+        pull: info?.pull?.markdownLink,
+        commit: info?.commit?.markdownLink,
+      };
     })();
 
     const pr = pull || commit ? ` (${pull ?? commit})` : "";
