@@ -18,8 +18,8 @@ importers:
         specifier: ^24.13.3
         version: 24.13.3
       fast-check:
-        specifier: ^4.9.0
-        version: 4.9.0
+        specifier: ^4.10.2
+        version: 4.10.2
       typescript:
         specifier: ^7.0.2
         version: 7.0.2
@@ -245,8 +245,8 @@ packages:
   dataloader@2.2.3:
     resolution: {integrity: sha512-y2krtASINtPFS1rSDjacrFgn1dcUuoREVabwlOGOe4SdxenREqwjwjElAdwvbGM7kgZz9a3KVicWR7vcz8rnzA==}
 
-  fast-check@4.9.0:
-    resolution: {integrity: sha512-7ms6T7SybUev/PQITciI0yLM2pOSFy5zpG8Ty7tQofcVaQUvrMXp6CBwqF6fThLCLOrfBtuHAtwq6Yu4XPCllg==}
+  fast-check@4.10.2:
+    resolution: {integrity: sha512-iK2f+YrcmoeGqk6fA0ea2bptcu/itMIm4NfEozq6N25+aG6h7s5HZbB/k1aV7b5w5sFLMCbbtRUsTVR+BgC3xw==}
     engines: {node: '>=12.17.0'}
 
   fast-string-truncated-width@3.0.3:
@@ -536,7 +536,7 @@ snapshots:
 
   dataloader@2.2.3: {}
 
-  fast-check@4.9.0:
+  fast-check@4.10.2:
     dependencies:
       pure-rand: 8.4.2
 
