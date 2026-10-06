@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    systems.url = "github:nix-systems/default";
 
     nix-develop.url = "github:nicknovitski/nix-develop";
     nix-develop.inputs.nixpkgs.follows = "nixpkgs";
@@ -10,13 +9,12 @@
   outputs =
     {
       nixpkgs,
-      systems,
       nix-develop,
       ...
     }:
     let
       forAllSystems =
-        function: nixpkgs.lib.genAttrs (import systems) (system: function nixpkgs.legacyPackages.${system});
+        function: nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: function nixpkgs.legacyPackages.${system});
 
     in
     {
