@@ -2,5 +2,3 @@ packages:
   - '.'
 
 minimumReleaseAge: 21600
-minimumReleaseAgeExclude:
-  - 'shell-quote@1.11.0'
